@@ -1,0 +1,105 @@
+.color-title {
+  color: white;
+}
+
+.size-letter-btn {
+  font-size: 20px !important;
+}
+
+.operator-color {
+  background-color: #58c7e9 !important;
+  border-color: #58c7e9 !important;
+}
+
+.btn-outline-dark {
+  color: #fff !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: #499bea !important;
+}
+
+.btn-outline-dark.focus,
+.btn-outline-dark:focus {
+  box-shadow: none !important;
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled).active:focus,
+.btn-outline-dark:not(:disabled):not(.disabled):active:focus,
+.show > .btn-outline-dark.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-outline-dark.focus,
+.btn-outline-dark:focus {
+  box-shadow: none;
+}
+
+.pad-cal {
+  padding: 10px 0px 0px 0px;
+  font-size: 16px;
+}
+
+.size-result {
+  font-size: 35px;
+}
+
+.window {
+  background: #499bea;
+  height: 100px;
+  border-radius: 10px 10px 0px 0px;
+  margin: 80px 450px 0px 335px;
+  text-align: right;
+  box-shadow: 5px 10px #58c7e9;
+}
+
+.margin-win {
+  margin: 0px 10px 0px 0px;
+}
+
+.cal-buttons {
+  margin: 0px 450px 0px 335px;
+  border: 1px solid transparent;
+  border-color: #499bea;
+  padding: 20px 0px 20px 60px;
+  box-shadow: 5px 10px #499bea;
+}
+
+.btn {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+}
+
+.btnsymboleq {
+  width: 230px;
+}
+
+.btn-outline-secondary.focus,
+.btn-outline-secondary:focus {
+  box-shadow: none !important;
+}
+
+.btn.focus,
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn-outline-primary.focus,
+.btn-outline-primary:focus {
+  box-shadow: none !important;
+}
+
+.btn-outline-primary {
+  background-color: #499bea !important;
+}
+
+.btn-outline-primary {
+  color: #fff !important;
+  border-color: #499bea !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0062cc !important;
+  border-color: #499bea !important;
+}

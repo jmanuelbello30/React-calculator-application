@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./calculator.css";
+import "./Component/calculator.css";
 import Calculator from "./Component/Calculator";
 import * as serviceWorker from "./serviceWorker";
 //import $ from "jquery";
 //import Popper from "popper.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Calculator initialValue ="J"/>
+    <Calculator initialValue ="0"/>
   </React.StrictMode>,
   document.getElementById("root")
 );
