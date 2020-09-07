@@ -1,106 +1,121 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalculator } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const Calculator = (props) => {
   // Se declara una variable de estado para manejar los datos de la calculadora.
-  // firstNumber es el número con que se inicia la calculadora (initialValue), y posteriomente será el primer valor de cálculo.
-  // secondNumber es el segundo número que ingresa a la calculadora.
+  // previousCalculation será el primer valor de cálculo luego de que se ejecute entryNumber.
+  // entryNumber es el número que ingresa con a darle click a los botones de la calculadora, y puede iniciarse con un número mediante (initialValue).
   // window es el string que simula la pantalla de la calculadora, muestra la operación que el usuario esta realizando.
   // operator es el símbolo operador que hará la función matemática.
   // result es el total de la operación y estará relacionado con el botón =.
 
   const [operation, setOperation] = useState({
-    firstNumber: props.initialValue,
-    secondNumber: "",
+    previousCalculation: "0",
+    entryNumber: props.initialValue,
     window: "",
     operator: "+",
     result: props.initialValue,
   });
 
+  // Se crean 3 variables para manejar los Iconos de Fontawesome según su documentación.
+  const calculatorIcon = <FontAwesomeIcon icon={faCalculator} />; // Icono para título.
+  const gitHubIcon = <FontAwesomeIcon icon={faGithub} />; // Icono para profile.
+  const linkedinIcon = <FontAwesomeIcon icon={faLinkedin} />; //Icono para  profile.
+
   // Se crea una función para manejar los números de la calculadora.
   // handleNumber es la función que se llama al momento de hacer click únicamente a los números de la calculadora.
-  // La función debe recibir el número que se esta haciendo click.
+  // La función recibe el número que se esta haciendo click.
   // Realiza el cálculo y actualiza los estados.
   // Función sin espera de return.
 
   const handleNumber = (number) => {
-    // number es el parametro para recibir el número del botón al cual se le dió click.
-    // Se crean variables para acceder a los atributos de la variable de estado.
-    // Con la variable secondNumber se busca construir el número para la operación, por esto se concatena a esta variable el parametro "number".
-    // La acción que indica que el secondNumber ya ha sido construido es el handleOperators (información en documetnación de la función).
-    // secondNumber se inicializa como un string para hacer de forma mas sencilla la concatenación.
+    // Se crea condicional para delimitar la cantidad de números que puede incluir el usuario.
+    if (operation.entryNumber.length < 10) {
+      // number es el parametro para recibir el número del botón al cual se le dió click.
+      // Se crean variables para acceder a los atributos de la variable de estado.
+      // Con la variable entryNumber se busca construir el número para la operación, por esto se concatena a esta variable el parametro "number".
+      // La acción que indica que el entryNumber ya ha sido construido es el handleOperators (información en documentación de la función).
+      // entryNumber se inicializa como un string para hacer de forma mas sencilla la concatenación.
 
-    let firstNumber = parseToNumberValid(operation.firstNumber);
-    let operator = operation.operator;
-    let result = parseToNumberValid(operation.result);
-    let secondNumber = operation.secondNumber + number;
+      let previousCalculation = parseToNumberValid(
+        operation.previousCalculation
+      );
+      let operator = operation.operator;
+      let result = parseToNumberValid(operation.result);
+      let entryNumber = operation.entryNumber + number;
 
-    // Se crea un condicional para la lógica de la calculadora.
-    // Se utiliza parseFloat para convertir el string que se recibe en firstNumber y secondNumber en números decimales para realizar la opración matemática.
+      // Se crea un condicional para la lógica de la calculadora.
+      // Se utiliza parseFloat para convertir el string que se recibe en previousCalculation y entryNumber en números decimales para realizar la opración matemática.
 
-    if (operator === "+") {
-      result = parseFloat(firstNumber) + parseFloat(secondNumber);
-    } else if (operator === "-") {
-      result = parseFloat(firstNumber) - parseFloat(secondNumber);
-    } else if (operator === "/") {
-      result = parseFloat(firstNumber) / parseFloat(secondNumber);
-    } else if (operator === "*") {
-      result = parseFloat(firstNumber) * parseFloat(secondNumber);
+      if (operator === "+") {
+        result = parseFloat(previousCalculation) + parseFloat(entryNumber);
+      } else if (operator === "-") {
+        result = parseFloat(previousCalculation) - parseFloat(entryNumber);
+      } else if (operator === "/") {
+        result = parseFloat(previousCalculation) / parseFloat(entryNumber);
+      } else if (operator === "*") {
+        result = parseFloat(previousCalculation) * parseFloat(entryNumber);
+      }
+
+      // Se accede a la variable de estado para cambiar los atributos "window", "result", "entryNumber".
+      // En este caso, window es actualizado concatenando cada número seleccionado.
+      // result actualiza el resultado de la operación.
+      // entryNumber es actualizado con la variable que arriba se inicializo con el mismo nombre.
+      // El resto de las variables se mantienen en el mismo estado.
+
+      setOperation({
+        ...operation,
+        window: operation.window + number,
+        result: result,
+        entryNumber: entryNumber,
+      });
     }
-
-    // Se accede a la variable de estado para cambiar los atributos "window", "result", "secondNumber".
-    // En este caso, window es actualizado concatenando cada número seleccionado
-    // result actualiza el resultado de la operación.
-    // secondNumber es actualizado con la variable que arriba se inicializo con el mismo nombre.
-    // El resto de las variables se mantienen en el mismo estado.
-
-    setOperation({
-      ...operation,
-      window: operation.window + number,
-      result: result,
-      secondNumber: secondNumber,
-    });
   };
 
   // Se crea una función para manejar los operadores.
   // Cuando se elige un operador, window guardara ese operador.
   // El atributo operador de la variable de estado es actualizado con el parámetro enviado (el símbolo clikeado por el usuario).
-  // firstNumber es actualizado con el resultado de la operación y secondNumber volverá a su estado inicial '' para esperar el próximo número.
+  // previousCalculation es actualizado con el resultado de la operación y entryNumber volverá a su estado inicial '' para esperar el próximo número.
 
   const handleOperators = (operator) => {
-    // En este caso, window es actualizado concatenando cada operador seleccionado
+    // En este caso, window es actualizado concatenando cada operador seleccionado.
 
     setOperation({
       ...operation,
       window: operation.window + operator,
       operator: operator,
-      firstNumber: operation.result,
-      secondNumber: "",
+      previousCalculation: operation.result,
+      entryNumber: "",
     });
   };
 
   // Se crea una función para manejar el símbolo =.
-  // Se accede a la variable de estado para cambiar los atributos "firstNumber", "secondNumber" y "window", para colocarlos a un valor inicial.
+  // Se accede a la variable de estado para cambiar los atributos "previousCalculation", "entryNumber" y "window", para colocarlos a un valor inicial.
 
   const handleResult = () => {
     setOperation({
       ...operation,
-      firstNumber: "",
-      secondNumber: "",
+      previousCalculation: "",
+      entryNumber: "",
       window: "",
     });
   };
 
   // Se crea una función para manejar el botón AC o clear
-  // se accede a todos los atributos de la variable de estado para colocar todos los valores a su valor inicial.
+  // Se accede a todos los atributos de la variable de estado para colocar todos los valores a su valor inicial.
+  // En el caso de previousCalculation y result regresarán al valor inicial que se haya declarado en <Calculator initialValue =""/>
 
   const handleClear = () => {
     setOperation({
       ...operation,
-      firstNumber: "0",
-      secondNumber: "",
+      previousCalculation: "0",
+      entryNumber: props.initialValue,
       window: "",
       operator: "+",
-      result: 0,
+      result: props.initialValue,
     });
   };
 
@@ -121,19 +136,27 @@ const Calculator = (props) => {
     }
   };
 
-  // Renderizado de componente utilizando Bootstrap para el diseño.
+  // Diseño de HTML con Bootstrap.
 
   return (
     <>
       <div className="container">
+        {/* Título de la calculadora */}
+        <div className="title-box">
+          <h1 className="principal-title">
+            Calculator with React Hooks {calculatorIcon}
+          </h1>
+        </div>
+        {/* Pantalla de Calculadora */}
         <div className="window">
           <div className="margin-win">
-            <p className="color-title pad-cal">{operation.window}</p>
-            <p className="color-title size-result">
+            <div className="color-title-window pad-cal">{operation.window}</div>
+            <div className="color-title-window size-result">
               {parseToNumberValid(operation.result)}
-            </p>
+            </div>
           </div>
         </div>
+        {/* Botones de calculadora */}
         <div className="cal-buttons">
           <div className="row">
             <button
@@ -263,6 +286,35 @@ const Calculator = (props) => {
             >
               =
             </button>
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        {/* Tarjeta profile */}
+        <div className="card features">
+          <div className="cardheader"></div>
+          <div className="info">
+            <div className="made-by">Made by J.M</div>
+            <div className="desc">Developer</div>
+            <div className="desc">Geek Gamer </div>
+          </div>
+          <div className="bottom">
+            <a
+              className="icons-style"
+              href="https://github.com/jmanuelbello30?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {gitHubIcon}
+            </a>
+            <a
+              className="icons-style"
+              href="https://www.linkedin.com/in/belloal/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {linkedinIcon}
+            </a>
           </div>
         </div>
       </div>
