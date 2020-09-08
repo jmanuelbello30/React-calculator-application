@@ -1,7 +1,7 @@
-/* Estilos de título calculadora */
+/* Calculator title styles */
 
 .title-box {
-  margin: 50px 0px 0px 280px;
+  margin: 25px 0px 15px 280px;
 }
 
 .principal-title {
@@ -26,7 +26,7 @@
   left: 0;
 }
 
-/* Estilos de calculadora */
+/* Calculator styles */
 
 .operator-color {
   background-color: #58c7e9 !important;
@@ -134,14 +134,14 @@
   border-color: #499bea !important;
 }
 
-/* Estilos de tarjeta profile Made by*/
+/* Profile Card Styles "Made by"*/
 
 .card.features {
   position: relative;
   padding-top: 0;
   overflow: hidden;
   text-align: center;
-  margin: 60px 440px 0px 335px;
+  margin: 60px 440px 20px 335px;
 }
 
 .card.features .cardheader {
@@ -179,4 +179,28 @@ a:hover {
 .made-by {
   font-family: "VT323", monospace;
   font-size: 18px;
+}
+
+/*Input and button for change Initial Value styles*/
+
+.changue-value-btn{
+  width: 180px;
+  height: 38px;
+  color: #6c757d;
+  border-color: #0062cc !important;
+}
+
+.changue-value-btn:hover{
+  color: #fff;
+  background-color: #499bea !important;
+  border-color: #499bea !important;
+}
+
+.input-group {
+  margin: 0px;
+  margin: 0px 0px 0px 300px;
+}
+
+.input-group-prepend {
+  margin: -5px -1px 0px 0px !important;
 }
