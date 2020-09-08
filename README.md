@@ -25,6 +25,6 @@ $ npm start
 ```
 ---
 - The code formatting structure of this APP is according to [Prettier](https://prettier.io/)
-- This project can be tested directly in [Demo](react-calculator-application-9suzxoqio.vercel.app)
+- This project can be tested directly in [Demo](https://react-calculator-application.vercel.app/)
 
 **Additional note:** this calculator can change its initial value by altering the initialValue input.
