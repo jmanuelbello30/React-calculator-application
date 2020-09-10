@@ -14,7 +14,7 @@ Libraries installed in this project:
 Clone the repository, install the dependencies and start the server.
 
 ```sh
-1. $ git clone https://github.com/breatheco-de/exercise-contact-list-context.git
+1. $ git clone https://github.com/jmanuelbello30/React-calculator-application.git
 2. $ npm install
 3. $ npm start
 ```
